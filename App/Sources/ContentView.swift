@@ -13,7 +13,6 @@ struct ContentView: View {
             Text("FRENTE")
                 .font(.custom("GmarketSansBold", size: 14))
         }
-        .padding()
     }
 }
 
