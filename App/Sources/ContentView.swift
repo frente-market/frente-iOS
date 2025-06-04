@@ -9,10 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Text("FRENTE")
-                .font(.custom("GmarketSansBold", size: 14))
-        }
+        MainTabView()
     }
 }
 
