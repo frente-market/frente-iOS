@@ -6,7 +6,9 @@ let project = Project(
     options: .options(
         automaticSchemesOptions: .disabled
     ),
-    packages: [],
+    packages: [
+        .remote(url: "https://github.com/firebase/firebase-ios-sdk.git", requirement: .upToNextMajor(from: "10.0.0")),
+    ],
     settings: .settings(
         base: [
             "IPHONEOS_DEPLOYMENT_TARGET": "17.0"
@@ -28,12 +30,20 @@ let project = Project(
             sources: ["App/Sources/**"],
             resources: [
                 "UI/Resources/Assets.xcassets",
-                "UI/Resources/Fonts/**"
+                "UI/Resources/Fonts/**",
+                "App/Resources/GoogleService-Info.plist"
             ],
             dependencies: [
                 .target(name: "Core"),
                 .target(name: "Feature"),
-                .target(name: "UI")
+                .target(name: "UI"),
+                .package(product: "FirebaseAnalytics"),
+                .package(product: "FirebaseAuth"),
+                .package(product: "FirebaseAuthCombine-Community"),
+                .package(product: "FirebaseFirestore"),
+                .package(product: "FirebaseFirestoreCombine-Community"),
+                .package(product: "FirebaseStorage"),
+                .package(product: "FirebaseStorageCombine-Community"),
             ]
         ),
         
@@ -44,8 +54,7 @@ let project = Project(
             bundleId: "com.frente.core",
             deploymentTargets: .iOS("17.0"),
             infoPlist: .extendingDefault(with: [:]),
-            sources: ["Core/Sources/**"],
-            resources: ["Core/Resources/**"]
+            sources: ["Core/Sources/**"]
         ),
         
         .target(
@@ -56,7 +65,6 @@ let project = Project(
             deploymentTargets: .iOS("17.0"),
             infoPlist: .extendingDefault(with: [:]),
             sources: ["Feature/Sources/**"],
-            resources: ["Feature/Resources/**"],
             dependencies: [
                 .target(name: "Core"),
                 .target(name: "UI")
