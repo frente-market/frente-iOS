@@ -19,6 +19,7 @@ struct Product: Identifiable {
 
 struct HomeView: View {
     @State private var selectedProduct: Product? = nil
+    @State private var isPresentPostingView: Bool = false
     let sampleItems = (0..<10).map { _ in
         Product(
             title: "수원삼성 짭트로 L",
@@ -110,15 +111,14 @@ struct HomeView: View {
                     Spacer()
                     HStack {
                         Spacer()
-                        Button(action: { print("글쓰기 버튼 클릭") }) {
-                            Text("+ 글쓰기")
-                                .font(.custom("GmarketSansMedium", size: 16))
+                        Button(action: { isPresentPostingView = true }) {
+                            Text("+  글쓰기")
+                                .font(.custom("GmarketSansMedium", size: 15))
                                 .foregroundColor(.white)
-                                .padding(.vertical, 14)
-                                .padding(.horizontal, 28)
+                                .padding(.vertical, 15)
+                                .padding(.horizontal, 20)
                                 .background(Color("suwonBlue"))
                                 .cornerRadius(30)
-                                .shadow(radius: 3)
                         }
                         .padding(.bottom, 32)
                         .padding(.trailing, 24)
@@ -128,6 +128,9 @@ struct HomeView: View {
             .navigationBarHidden(true)
             .fullScreenCover(item: $selectedProduct) { _ in
                 DetailView()
+            }
+            .fullScreenCover(isPresented: $isPresentPostingView) {
+                PostingView()
             }
         }
     }
