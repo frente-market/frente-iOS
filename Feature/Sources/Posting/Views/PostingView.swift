@@ -11,6 +11,7 @@ import PhotosUI
 
 struct PostingView: View {
     @Environment(\.dismiss) var dismiss
+    @AppStorage("selectedTab") private var selectedTab: Int = 1
     @State private var selectedItems: [PhotosPickerItem] = []
     @State private var selectedImages: [UIImage] = []
     @State private var title: String = ""
@@ -28,18 +29,24 @@ struct PostingView: View {
     var body: some View {
         ZStack(alignment: .bottom) {
             VStack(spacing: 0) {
-                // 상단 닫기 버튼
+                // 헤더
                 HStack {
-                    Button(action: { dismiss() }) {
+                    Button(action: {
+                        selectedTab = 1
+                    }) {
                         Image(systemName: "chevron.left")
                             .font(.system(size: 23, weight: .bold))
                             .foregroundStyle(Color.primary)
                     }
                     Spacer()
+                    Text("글쓰기")
+                        .font(.custom("GmarketSansBold", size: 23))
+                        .foregroundColor(Color("suwonBlue"))
+                    Spacer()
                 }
-                .padding(.top, 15)
-                .padding(.bottom, 20)
                 .padding(.horizontal, 20)
+                .padding(.top, 10)
+                .padding(.bottom, 5)
                 
                 Divider()
                     .padding(.bottom, 5)
@@ -162,7 +169,7 @@ struct PostingView: View {
                         // 하단 작성 완료 버튼
                         VStack {
                             Button {
-                                dismiss()
+                                selectedTab = 1
                             } label: {
                                 Text("작성 완료")
                                     .font(.custom("GmarketSansMedium", size: 18))
@@ -184,7 +191,6 @@ struct PostingView: View {
                     priceFieldIsFocused = false
                 }
             }
-            
         }
     }
     
