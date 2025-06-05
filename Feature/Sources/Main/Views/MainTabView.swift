@@ -27,7 +27,7 @@ struct MainTabView: View {
             
             ChatListView()
                 .tabItem {
-                    Label("CHAT", systemImage: "message.fill")
+                    Label("CHAT", systemImage: "ellipsis.message.fill")
                 }
                 .tag(3)
             
