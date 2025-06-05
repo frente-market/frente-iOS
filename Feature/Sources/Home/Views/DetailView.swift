@@ -28,6 +28,7 @@ struct SampleData {
 struct DetailView: View {
     @Environment(\.dismiss) var dismiss
     @State private var selectedIndex: Int = 0
+    @State private var showChatDetail: Bool = false
     
     let sampleData = SampleData()
     
@@ -132,7 +133,7 @@ struct DetailView: View {
                         .font(.custom("GmarketSansBold", size: 22))
                         .foregroundColor(Color.primary)
                     Spacer()
-                    Button(action: { print("채팅하기 버튼 클릭") }) {
+                    Button(action: { showChatDetail = true }) {
                         Text("채팅하기")
                             .font(.custom("GmarketSansMedium", size: 17))
                             .foregroundColor(.white)
@@ -150,6 +151,17 @@ struct DetailView: View {
         }
         .background(Color.white)
         .ignoresSafeArea(edges: .bottom)
+        .fullScreenCover(isPresented: $showChatDetail) {
+            ChatDetailView(chatRoom: ChatRoom(
+                productTitle: sampleData.title,
+                productImage: sampleData.images[0],
+                partnerName: sampleData.userName,
+                partnerImage: sampleData.profileImage,
+                lastMessage: "",
+                lastMessageTime: Date(),
+                messages: []
+            ))
+        }
     }
 }
 
