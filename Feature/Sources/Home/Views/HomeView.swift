@@ -19,7 +19,6 @@ struct Product: Identifiable {
 
 struct HomeView: View {
     @State private var selectedProduct: Product? = nil
-    @State private var isPresentPostingView: Bool = false
     let sampleItems = (0..<10).map { _ in
         Product(
             title: "수원삼성 짭트로 L",
@@ -106,31 +105,10 @@ struct HomeView: View {
                         }
                     }
                 }
-                // 플로팅 글쓰기 버튼
-                VStack {
-                    Spacer()
-                    HStack {
-                        Spacer()
-                        Button(action: { isPresentPostingView = true }) {
-                            Text("+  글쓰기")
-                                .font(.custom("GmarketSansMedium", size: 15))
-                                .foregroundColor(.white)
-                                .padding(.vertical, 15)
-                                .padding(.horizontal, 20)
-                                .background(Color("suwonBlue"))
-                                .cornerRadius(30)
-                        }
-                        .padding(.bottom, 32)
-                        .padding(.trailing, 24)
-                    }
-                }
             }
             .navigationBarHidden(true)
             .fullScreenCover(item: $selectedProduct) { _ in
                 DetailView()
-            }
-            .fullScreenCover(isPresented: $isPresentPostingView) {
-                PostingView()
             }
         }
     }

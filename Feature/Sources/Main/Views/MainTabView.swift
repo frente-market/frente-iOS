@@ -15,27 +15,35 @@ struct MainTabView: View {
         TabView(selection: $selectedTab) {
             HomeView()
                 .tabItem {
-                    Label("HOME", systemImage: "house.fill")
+                    Label("홈", systemImage: "house.fill")
                 }
                 .tag(1)
             
-            NoticeListView()
+            ChatListView()
                 .tabItem {
-                    Label("NOTICE", systemImage: "bell.fill")
+                    Label("채팅", systemImage: "ellipsis.message.fill")
                 }
                 .tag(2)
             
-            ChatListView()
+            NavigationView {
+                PostingView()
+            }
+            .tabItem {
+                Label("글쓰기", systemImage: "plus.circle.fill")
+            }
+            .tag(3)
+            
+            NoticeListView()
                 .tabItem {
-                    Label("CHAT", systemImage: "ellipsis.message.fill")
+                    Label("공지", systemImage: "bell.fill")
                 }
-                .tag(3)
+                .tag(4)
             
             MyPageView()
                 .tabItem {
-                    Label("MY", systemImage: "person.fill")
+                    Label("마이", systemImage: "person.fill")
                 }
-                .tag(4)
+                .tag(5)
         }
         .tint(Color("suwonBlue"))
     }
