@@ -8,8 +8,14 @@
 import SwiftUI
 
 struct ContentView: View {
+    private var isLoginSample: Bool = false
+    
     var body: some View {
-        MainTabView()
+        if isLoginSample {
+            MainTabView()
+        } else {
+            WelcomeView()
+        }
     }
 }
 
