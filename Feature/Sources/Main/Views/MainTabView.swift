@@ -46,6 +46,7 @@ struct MainTabView: View {
                 .tag(5)
         }
         .tint(Color("suwonBlue"))
+        .navigationBarHidden(true)
     }
 }
 
