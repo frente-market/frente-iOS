@@ -7,7 +7,7 @@
 
 import SwiftUI
 import FirebaseCore
-
+import Feature
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication,
@@ -21,10 +21,15 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct frente_iOSApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    @State private var isSplashActive: Bool = true
     
     var body: some Scene {
         WindowGroup{
-            SplashView()
+            if isSplashActive {
+                SplashView(isActive: $isSplashActive)
+            } else {
+                ContentView()
+            }
         }
     }
 }

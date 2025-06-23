@@ -1,7 +1,7 @@
 import Combine
 import SwiftUI
 
-struct KeyboardAdaptive: ViewModifier {
+public struct KeyboardAdaptive: ViewModifier {
     @State private var keyboardHeight: CGFloat = 0
     
     private let keyboardWillShow = NotificationCenter.default
@@ -17,7 +17,9 @@ struct KeyboardAdaptive: ViewModifier {
         .publisher(for: UIResponder.keyboardWillHideNotification)
         .map { _ in CGFloat(0) }
     
-    func body(content: Content) -> some View {
+    public init() {}
+    
+    public func body(content: Content) -> some View {
         content
             .padding(.bottom, keyboardHeight)
             .onReceive(
@@ -30,7 +32,7 @@ struct KeyboardAdaptive: ViewModifier {
     }
 }
 
-extension View {
+public extension View {
     func keyboardAdaptive() -> some View {
         ModifiedContent(content: self, modifier: KeyboardAdaptive())
     }

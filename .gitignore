@@ -7,6 +7,6 @@ Derived/
 xcuserdata/
 *.xcuserstate 
 
-Secrets.xcconfig
+App/Resources/GoogleService-Info.plist
 
 .DS_Store

@@ -8,10 +8,12 @@
 
 import SwiftUI
 
-struct MainTabView: View {
+public struct MainTabView: View {
     @AppStorage("selectedTab") public var selectedTab: Int = 1
     
-    var body: some View {
+    public init() {}
+    
+    public var body: some View {
         TabView(selection: $selectedTab) {
             HomeView()
                 .tabItem {

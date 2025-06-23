@@ -1,4 +1,5 @@
 import SwiftUI
+import Core
 
 struct ChatDetailView: View {
     @Environment(\.dismiss) var dismiss
