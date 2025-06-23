@@ -10,24 +10,36 @@ import SwiftUI
 
 struct SignUpView: View {
     @Environment(\.dismiss) var dismiss
+    @State private var viewModel = SignUpViewModel()
+    @State private var currentPage: SignUpPage = .agree
     
     var body: some View {
-        VStack {
-            Button {
-                dismiss()
-            } label: {
-                Image(systemName: "chevron.left")
-                    .font(.system(size: 23, weight: .bold))
-                    .foregroundStyle(Color.primary)
+        NavigationStack {
+            VStack {
+                switch currentPage {
+                case .agree:
+                    SignUpAgreementView(isAgreeAll: $viewModel.isAgreeAll,
+                                        onBack: { dismiss() },
+                                        onNext: {
+                        if viewModel.isAgreeAll {
+                            withAnimation {
+                                currentPage = .phone
+                            }
+                        }
+                    })
+                case .phone:
+                    InputPhoneView(onBack: {
+                        dismiss()
+                    }, onNext: {
+                        print("클릭")
+                    })
+                }
             }
-            .padding(.top, 10)
-            Text("SignUpView")
-
+            .navigationBarHidden(true)
         }
-        .navigationBarHidden(true)
     }
+    
 }
-
 #Preview {
     SignUpView()
 }
