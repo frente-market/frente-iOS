@@ -44,14 +44,7 @@ let project = Project(
                 .package(product: "FirebaseFirestoreCombine-Community"),
                 .package(product: "FirebaseStorage"),
                 .package(product: "FirebaseStorageCombine-Community"),
-            ],
-            settings: .settings(
-                base: [:],
-                configurations: [
-                    .debug(name: "Debug", xcconfig: "Tuist/Project/Configurations/Secrets.xcconfig"),
-                    .release(name: "Release", xcconfig: "Tuist/Project/Configurations/Secrets.xcconfig")
-                ]
-            )
+            ]
         ),
         
         .target(
@@ -74,7 +67,7 @@ let project = Project(
             sources: ["Feature/Sources/**"],
             dependencies: [
                 .target(name: "Core"),
-                .target(name: "UI")
+                .target(name: "UI"),
             ]
         ),
         

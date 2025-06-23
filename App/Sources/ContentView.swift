@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Feature
 
 struct ContentView: View {
     private var isLoginSample: Bool = false
