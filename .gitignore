@@ -1,9 +1,12 @@
 # Tuist
 .tuist/
+Tuist/
 Derived/
 *.xcodeproj/
 *.xcworkspace/
 xcuserdata/
 *.xcuserstate 
+
+Secrets.xcconfig
 
 .DS_Store
